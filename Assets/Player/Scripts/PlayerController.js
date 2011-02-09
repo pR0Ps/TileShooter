@@ -2,8 +2,7 @@
 
 
 // The speed when walking
-var walkSpeed = 3.0;
-
+var walkSpeed = 6.0;
 var inAirControlAcceleration = 3.0;
 
 // How high do we jump when pressing jump and letting go immediately
@@ -211,7 +210,6 @@ function DidJump ()
 	jumpingReachedApex = false;
 	lastJumpTime = Time.time;
 	lastJumpStartHeight = transform.position.y;
-	touchWallJumpTime = -1;
 	lastJumpButtonTime = -10;
 }
 
@@ -244,7 +242,6 @@ function Update() {
 	
 	// Move the controller
 	var controller : CharacterController = GetComponent(CharacterController);
-	wallJumpContactNormal = Vector3.zero;
 	collisionFlags = controller.Move(movement);
 	
 	// Set rotation to the move direction
@@ -271,7 +268,6 @@ function OnControllerColliderHit (hit : ControllerColliderHit )
 //	Debug.DrawRay(hit.point, hit.normal);
 	if (hit.moveDirection.y > 0.01) 
 		return;
-	wallJumpContactNormal = hit.normal;
 }
 
 function GetSpeed () {
