@@ -13,7 +13,7 @@ private var height = 0.0;
 
 function Awake () {
 	//Set current position to by "defaultHeight" units above the target, offset backwards by "horizontalDistance"
-	transform.position = target.position + Vector3.up * defaultHeight - Vector3.forward * horizontalDistance;
+	transform.position = target.position + Vector3.up * defaultHeight + Vector3.forward * horizontalDistance;
 	height = transform.position.y - target.position.y;
 	transform.LookAt(target);
 }
@@ -22,7 +22,7 @@ function LateUpdate () {
 	
 	//Only set the x and z directly, adjust height with zoom controls
 	transform.position.x = target.position.x + Vector3.forward.x * horizontalDistance;
-	transform.position.z = target.position.z + Vector3.forward.z * horizontalDistance;
+	transform.position.z = target.position.z - Vector3.forward.z * horizontalDistance;
 	
 	
 	// Reduce the height when the user tries to zoom in
